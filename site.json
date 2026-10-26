@@ -1,6 +1,6 @@
 {
   "name": "Yifei (Jeffrey) Sun",
-  "position": "Undergraduate Student in Data Science",
+  "position": "Undergraduate in Data Science and Big Data Technology",
   "affiliation": "Shanghai University of Electric Power",
   "email": "jeffreysun2005@163.com",
   "language": "en",
@@ -153,8 +153,8 @@
   "section_order": [
     "about",
     "education",
-    "projects",
     "publications",
+    "projects",
     "experience",
     "awards",
     "skills"
