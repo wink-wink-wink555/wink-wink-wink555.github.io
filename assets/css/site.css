@@ -9,53 +9,79 @@ header .degree { margin-bottom: 5px; }
 header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-bottom: 22px; }
 .image.avatar { display: block; }
 .image.avatar img { width: 145px; height: 145px; padding: 16px; object-fit: cover; }
-.profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
 .profile-links a { color: var(--link-color, #043361); }
 .profile-links a.profile-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   min-height: 40px;
-  padding: 8px 13px;
-  border: 1px solid var(--profile-link-border, #8796a5);
-  border-radius: 999px;
-  background: var(--page, #fff);
-  color: var(--link-color, #043361);
-  font: 600 14px/1.2 Arial, sans-serif;
+  padding: 9px 13px;
+  border: 1px solid var(--button-border);
+  border-radius: 9px;
+  background: var(--button-bg);
+  color: var(--button-ink);
+  box-shadow: var(--button-shadow);
+  font: 600 13px/20px "Segoe UI", Arial, sans-serif;
   text-decoration: none;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+  white-space: nowrap;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 .profile-links a.profile-link:hover {
-  background: var(--profile-link-hover, #eef4fa);
-  border-color: var(--link-color, #043361);
-  color: var(--link-hover-color, #003f70);
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-border);
+  color: var(--button-ink);
+  box-shadow: var(--button-hover-shadow);
   transform: translateY(-1px);
 }
-.profile-links .brand-icon { display: block; width: 16px; height: 16px; flex: 0 0 16px; }
-.repo-button {
+.profile-links a.profile-link:active { transform: translateY(0); box-shadow: var(--button-shadow); }
+.profile-links a.profile-link.profile-link--linkedin {
+  background: var(--linkedin-bg);
+  border-color: var(--linkedin-border);
+  color: var(--linkedin-ink);
+}
+.profile-links a.profile-link.profile-link--linkedin:hover {
+  background: var(--linkedin-hover-bg);
+  border-color: var(--linkedin-ink);
+}
+.profile-links .brand-icon { display: block; width: 15px; height: 15px; flex: 0 0 15px; }
+.repo-button, .publications ol.bibliography li .links a.btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  min-height: 30px;
-  margin-left: .6em;
-  padding: 6px 10px;
-  border: 1px solid var(--profile-link-border, #8796a5);
-  border-radius: 999px;
-  background: var(--page, #fff);
-  color: var(--link-color, #005a9c);
-  font: 600 12px/1 Arial, sans-serif;
+  justify-content: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid var(--button-border);
+  border-radius: 7px;
+  background: var(--button-bg);
+  color: var(--button-ink);
+  box-shadow: var(--button-shadow);
+  font: 600 12px/18px "Segoe UI", Arial, sans-serif;
   text-decoration: none;
-  vertical-align: .1em;
   white-space: nowrap;
-  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-.repo-button .brand-icon { display: block; width: 14px; height: 14px; flex: 0 0 14px; }
-.repo-button:hover {
-  background: var(--profile-link-hover, #eef4fa);
-  border-color: var(--link-color, #005a9c);
-  color: var(--link-hover-color, #003f70);
+.repo-button { margin-left: .55em; vertical-align: middle; }
+.repo-button .brand-icon { display: block; width: 13px; height: 13px; flex: 0 0 13px; }
+.repo-button .button-arrow {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  margin-left: 1px;
+  opacity: .55;
+  transition: opacity .18s ease, transform .18s ease;
 }
+.repo-button:hover, .publications ol.bibliography li .links a.btn:hover {
+  background: var(--button-hover-bg);
+  border-color: var(--button-hover-border);
+  color: var(--button-ink);
+  box-shadow: var(--button-hover-shadow);
+}
+.repo-button:hover .button-arrow { opacity: .9; transform: translate(1px, -1px); }
+.repo-button:active, .publications ol.bibliography li .links a.btn:active { box-shadow: var(--button-shadow); }
 main { width: calc(100% - 310px); float: right; padding: 88px 0 60px; }
 article { margin-bottom: 30px; }
 article h2 { margin-bottom: 16px; }
@@ -114,12 +140,33 @@ a:focus-visible, button:focus-visible { outline: 3px solid #cc9800; outline-offs
   body { background: white; color: black; }
 }
 
-body { --link-color: #005a9c; --link-hover-color: #003f70; --profile-link-hover: #eef4fa; --profile-link-border: #8796a5; }
+body {
+  --link-color: #005a9c;
+  --link-hover-color: #003f70;
+  --button-ink: #344256;
+  --button-bg: #f6f8fb;
+  --button-border: #d4dee9;
+  --button-hover-bg: #edf2f8;
+  --button-hover-border: #a9bbcf;
+  --button-shadow: 0 1px 2px rgb(15 23 42 / 4%), inset 0 1px 0 rgb(255 255 255 / 75%);
+  --button-hover-shadow: 0 4px 12px rgb(15 23 42 / 9%);
+  --linkedin-ink: #0a66c2;
+  --linkedin-bg: #eff6fe;
+  --linkedin-border: #cbdef2;
+  --linkedin-hover-bg: #e1eefc;
+}
 body:not([data-theme="classic"]) {
   --link-color: var(--accent);
   --link-hover-color: var(--accent);
-  --profile-link-hover: var(--surface);
-  --profile-link-border: var(--line);
+  --button-ink: var(--ink);
+  --button-bg: var(--surface);
+  --button-border: var(--line);
+  --button-hover-bg: var(--page);
+  --button-hover-border: var(--accent);
+  --linkedin-ink: var(--accent);
+  --linkedin-bg: var(--surface);
+  --linkedin-border: var(--line);
+  --linkedin-hover-bg: var(--page);
 }
 a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):not(.biblink):not(.fakelink) {
   color: var(--link-color, #005a9c);
@@ -132,6 +179,7 @@ a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):no
   text-decoration-thickness: .12em;
 }
 @media (prefers-reduced-motion: reduce) {
-  .profile-links a.profile-link, .repo-button { transition: none; }
-  .profile-links a.profile-link:hover { transform: none; }
+  .profile-links a.profile-link, .repo-button, .repo-button .button-arrow,
+  .publications ol.bibliography li .links a.btn { transition: none; }
+  .profile-links a.profile-link:hover, .repo-button:hover .button-arrow { transform: none; }
 }

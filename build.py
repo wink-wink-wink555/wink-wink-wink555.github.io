@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render an academic homepage from reviewed public data; Python 3.9+, no packages."""
 import argparse
+import hashlib
 import html
 import json
 from pathlib import Path
@@ -143,10 +144,12 @@ def link(label, url, css=''):
     return '<a class="{}" href="{}">{}</a>'.format(css, esc(url), esc(label))
 
 
-GITHUB_ICON = ('<svg class="brand-icon github-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+GITHUB_ICON = ('<svg class="brand-icon github-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
                '<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>')
-LINKEDIN_ICON = ('<svg class="brand-icon linkedin-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+LINKEDIN_ICON = ('<svg class="brand-icon linkedin-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
                  '<path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM3.56 9h3.554v11.452H3.56V9ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z"/></svg>')
+OUTBOUND_ICON = ('<svg class="button-arrow" width="10" height="10" viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+                 '<path d="M4 12 12 4M4.5 4H12v7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
 def is_github_url(url):
@@ -168,8 +171,8 @@ def profile_link(label, url):
 def project_title_markup(title, url):
     if is_github_url(url):
         label = esc('Open {} GitHub repository'.format(title))
-        return '{} <a class="repo-button" href="{}" aria-label="{}">{}<span>GitHub</span></a>'.format(
-            esc(title), esc(url), label, GITHUB_ICON)
+        return '{} <a class="repo-button" href="{}" aria-label="{}">{}<span>GitHub</span>{}</a>'.format(
+            esc(title), esc(url), label, GITHUB_ICON, OUTBOUND_ICON)
     return '<a class="project-link" href="{}">{}</a>'.format(esc(url), esc(title))
 
 
@@ -187,7 +190,7 @@ def render_detail(text, detail_links):
     return ''.join(output)
 
 
-def render(data, template):
+def render(data, template, style_version=''):
     labels = LABELS[data.get('language', 'en')]
     theme = data.get('theme', 'classic')
     background = data.get('background', THEMES[theme]['background'])
@@ -263,14 +266,16 @@ def render(data, template):
         title=esc(' | '.join(filter(None, [data['name'], data.get('affiliation')]))),
         description=esc(data.get('description') or ' '.join(data.get('about', []))[:180]),
         canonical=canonical, profile=profile, navigation=''.join(nav), sections='\n'.join(sections), menu=labels['menu'],
-        theme=theme, background=background,
+        theme=theme, background=background, style_version=style_version,
         particles_script='<script src="assets/js/particles.min.js" defer></script>' if background == 'particles' else '')
 
 
 def build(root):
     root = Path(root).resolve()
     data = validate(json.loads((root / 'site.json').read_text(encoding='utf-8')), root)
-    rendered = render(data, (root / 'template.html').read_text(encoding='utf-8'))
+    styles = [root / 'assets/css/site.css', root / 'assets/css/themes.css']
+    style_version = hashlib.sha256(b''.join(path.read_bytes() for path in styles)).hexdigest()[:12]
+    rendered = render(data, (root / 'template.html').read_text(encoding='utf-8'), style_version)
     docs = root / 'docs'
     marker = docs / '.cv-to-homepage'
     if docs.is_symlink() or (docs.exists() and not marker.is_file()):
