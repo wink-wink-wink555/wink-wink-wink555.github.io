@@ -55,7 +55,6 @@
       "title": "Software Development Intern, Early Engineering Team",
       "organization": "Wuhu Qiheng Technology Co., Ltd.",
       "dates": "Mar 2026 – Present",
-      "group": "Internship Experience",
       "details": [
         "Early-stage EdTech startup founded by a Shanghai Jiao Tong University professor and Ph.D. students.",
         "Designed database schemas, permission rules, and task and version states for Codo (React 19, TypeScript, FastAPI), a K–12 AI teaching platform used in 10+ schools in Anhui, China.",
@@ -69,7 +68,6 @@
       "title": "Software Development Assistant (AI)",
       "organization": "Shanghai Siwei Software Co., Ltd.",
       "dates": "May 2024 – Aug 2024",
-      "group": "Internship Experience",
       "details": [
         "Co-designed the relational database layer for an enterprise Text-to-SQL system, building business tables and query interfaces and documenting the business meaning of each table and field.",
         "Implemented multi-step agent workflows to interpret user intent, generate schema-aware SQL, run queries against the business database, and format results.",
