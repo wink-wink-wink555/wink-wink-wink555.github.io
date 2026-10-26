@@ -11,7 +11,7 @@ from urllib.parse import urlsplit, unquote
 
 LABELS = {
     'en': {'about': 'About Me', 'publications': 'Publications', 'projects': 'Projects',
-           'experience': 'Experience', 'education': 'Education', 'awards': 'Awards',
+           'experience': 'Internships', 'education': 'Education', 'awards': 'Awards',
            'skills': 'Skills', 'service': 'Service & Teaching', 'menu': 'Menu'},
     'zh': {'about': '关于我', 'publications': '论文发表', 'projects': '项目经历',
            'experience': '研究与工作经历', 'education': '教育背景', 'awards': '荣誉奖励',
