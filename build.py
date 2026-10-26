@@ -22,11 +22,12 @@ STRINGS = {'name', 'position', 'affiliation', 'degree', 'email', 'description',
 CATALOG = json.loads((Path(__file__).resolve().parent / 'designs.json').read_text(encoding='utf-8'))
 THEMES = {item['id']: item for item in CATALOG['themes']}
 BACKGROUNDS = {'none'} | {item['id'] for item in CATALOG['effects']}
-LISTS = {'about', 'links', 'publications', 'projects', 'experience', 'education',
+LISTS = {'about', 'links', 'additional_emails', 'publications', 'projects', 'experience', 'education',
          'awards', 'skills', 'service', 'section_order'}
-ENTRY_KEYS = {'title', 'organization', 'dates', 'details', 'url', 'group'}
+ENTRY_KEYS = {'title', 'organization', 'dates', 'details', 'detail_links', 'url', 'group'}
 PUB_KEYS = {'title', 'authors', 'venue', 'year', 'badge', 'notes', 'image', 'links'}
 ORDER = ['about', 'publications', 'projects', 'experience', 'education', 'awards', 'skills', 'service']
+EMAIL_PATTERN = re.compile(r'[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+')
 
 
 def esc(value):
@@ -83,8 +84,11 @@ def validate(data, root=None):
     if data.get('background', 'none') not in BACKGROUNDS:
         raise ValueError('Unknown background. Choose one of: ' + ', '.join(sorted(BACKGROUNDS)))
     email = data.get('email', '')
-    if email and not re.fullmatch(r'[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+', email):
+    if email and not EMAIL_PATTERN.fullmatch(email):
         raise ValueError('email must be a plain email address.')
+    if any(not isinstance(value, str) or not EMAIL_PATTERN.fullmatch(value)
+           for value in data.get('additional_emails', [])):
+        raise ValueError('additional_emails must contain plain email addresses.')
     if data.get('site_url'):
         safe_url(data['site_url'])
     validate_links(data.get('links', []))
@@ -105,6 +109,18 @@ def validate(data, root=None):
             for field, value in item.items():
                 if field == 'links':
                     validate_links(value)
+                elif field == 'detail_links':
+                    if not isinstance(value, list):
+                        raise ValueError('detail_links must be an array.')
+                    seen = set()
+                    for detail_link in value:
+                        if (not isinstance(detail_link, dict) or set(detail_link) != {'text', 'url'}
+                                or not isinstance(detail_link['text'], str) or not detail_link['text'].strip()):
+                            raise ValueError('Each detail link needs exactly text and url.')
+                        if detail_link['text'] in seen:
+                            raise ValueError('detail link text must be unique within an entry.')
+                        seen.add(detail_link['text'])
+                        safe_url(detail_link['url'])
                 elif field == 'details':
                     if not isinstance(value, list) or any(not isinstance(x, str) for x in value):
                         raise ValueError('details must be a list of text.')
@@ -127,6 +143,20 @@ def link(label, url, css=''):
     return '<a class="{}" href="{}">{}</a>'.format(css, esc(url), esc(label))
 
 
+def render_detail(text, detail_links):
+    targets = {item['text']: item['url'] for item in detail_links}
+    if not targets:
+        return esc(text)
+    pattern = re.compile('|'.join(re.escape(value) for value in sorted(targets, key=len, reverse=True)))
+    output, offset = [], 0
+    for match in pattern.finditer(text):
+        output.append(esc(text[offset:match.start()]))
+        output.append(link(match.group(0), targets[match.group(0)]))
+        offset = match.end()
+    output.append(esc(text[offset:]))
+    return ''.join(output)
+
+
 def render(data, template):
     labels = LABELS[data.get('language', 'en')]
     theme = data.get('theme', 'classic')
@@ -140,8 +170,9 @@ def render(data, template):
         profile += '<p class="position">{}</p>'.format(esc(position))
     if data.get('degree'):
         profile += '<p class="degree">{}</p>'.format(esc(data['degree']))
-    if data.get('email'):
-        profile += '<p class="email">' + link(data['email'], 'mailto:' + data['email']) + '</p>'
+    emails = list(dict.fromkeys(filter(None, [data.get('email', ''), *data.get('additional_emails', [])])))
+    if emails:
+        profile += '<p class="email">' + '<br>'.join(link(email, 'mailto:' + email) for email in emails) + '</p>'
     social = [link(x['label'], x['url']) for x in data.get('links', [])]
     if data.get('cv'):
         social.append(link('CV', data['cv']))
@@ -193,7 +224,7 @@ def render(data, template):
                     content += ' <span class="dates">({})</span>'.format(esc(item['dates']))
                 content += '</p>'
                 if item.get('details'):
-                    content += '<ul>' + ''.join('<li>{}</li>'.format(esc(x)) for x in item['details']) + '</ul>'
+                    content += '<ul>' + ''.join('<li>{}</li>'.format(render_detail(x, item.get('detail_links', []))) for x in item['details']) + '</ul>'
                 content += '</div>'
         sections.append('<article class="section-{3}" aria-labelledby="{0}"><h2 id="{0}">{1}</h2>{2}</article>'.format(anchor, labels[key], content, key))
     canonical = '<link rel="canonical" href="{}">'.format(esc(data['site_url'])) if data.get('site_url') else ''

@@ -1,5 +1,5 @@
 {
-  "name": "Yifei Sun",
+  "name": "Yifei (Jeffrey) Sun",
   "position": "Undergraduate Student in Data Science",
   "affiliation": "Shanghai University of Electric Power",
   "email": "jeffreysun2005@163.com",
@@ -100,6 +100,12 @@
         "Connected 19 FinanceMCP financial tools over HTTP and MCP to form FinNote, bringing multi-market data and AI analysis into editable Markdown notes.",
         "Added safeguards for agent edits: writes are off by default, each write needs one-time approval tied to its arguments, and changes are journaled with before-images for rollback.",
         "Handled concurrent edits with content versions and ETag conflict checks; the CV reports 500+ pytest and Vitest tests."
+      ],
+      "detail_links": [
+        {
+          "text": "FinanceMCP",
+          "url": "https://github.com/guangxiangdebizi/FinanceMCP"
+        }
       ]
     },
     {
@@ -157,5 +163,8 @@
   ],
   "theme": "classic",
   "background": "particles",
-  "site_url": "https://wink-wink-wink555.github.io/"
+  "site_url": "https://wink-wink-wink555.github.io/",
+  "additional_emails": [
+    "yfsun.jeff@gmail.com"
+  ]
 }
