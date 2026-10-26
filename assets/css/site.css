@@ -11,77 +11,40 @@ header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-b
 .image.avatar img { width: 145px; height: 145px; padding: 16px; object-fit: cover; }
 .profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
 .profile-links a { color: var(--link-color, #043361); }
+.profile-links a.profile-link, .repo-button, .publications ol.bibliography li .links a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 2px 7px;
+  border: 1px solid var(--resource-border);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--resource-ink);
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
+}
+.profile-links a.profile-link:hover, .repo-button:hover, .publications ol.bibliography li .links a.btn:hover {
+  border-color: var(--resource-hover-ink);
+  color: var(--resource-hover-ink);
+}
 .profile-links a.profile-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 40px;
-  padding: 9px 13px;
-  border: 1px solid var(--button-border);
-  border-radius: 9px;
-  background: var(--button-bg);
-  color: var(--button-ink);
-  box-shadow: var(--button-shadow);
-  font: 600 13px/20px "Segoe UI", Arial, sans-serif;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-}
-.profile-links a.profile-link:hover {
-  background: var(--button-hover-bg);
-  border-color: var(--button-hover-border);
-  color: var(--button-ink);
-  box-shadow: var(--button-hover-shadow);
-  transform: translateY(-1px);
-}
-.profile-links a.profile-link:active { transform: translateY(0); box-shadow: var(--button-shadow); }
-.profile-links a.profile-link.profile-link--linkedin {
-  background: var(--linkedin-bg);
-  border-color: var(--linkedin-border);
-  color: var(--linkedin-ink);
-}
-.profile-links a.profile-link.profile-link--linkedin:hover {
-  background: var(--linkedin-hover-bg);
-  border-color: var(--linkedin-ink);
-}
-.profile-links .brand-icon { display: block; width: 15px; height: 15px; flex: 0 0 15px; }
-.repo-button, .publications ol.bibliography li .links a.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   gap: 6px;
-  min-height: 28px;
-  padding: 4px 9px;
-  border: 1px solid var(--button-border);
-  border-radius: 7px;
-  background: var(--button-bg);
-  color: var(--button-ink);
-  box-shadow: var(--button-shadow);
-  font: 600 12px/18px "Segoe UI", Arial, sans-serif;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+  min-height: 32px;
+  padding: 5px 10px;
+  font-size: 15px;
+  line-height: 20px;
 }
+.profile-links .brand-icon { display: block; width: 14px; height: 14px; flex: 0 0 14px; }
 .repo-button { margin-left: .55em; vertical-align: middle; }
-.repo-button .brand-icon { display: block; width: 13px; height: 13px; flex: 0 0 13px; }
-.repo-button .button-arrow {
-  display: block;
-  width: 10px;
-  height: 10px;
-  flex: 0 0 10px;
-  margin-left: 1px;
-  opacity: .55;
-  transition: opacity .18s ease, transform .18s ease;
-}
-.repo-button:hover, .publications ol.bibliography li .links a.btn:hover {
-  background: var(--button-hover-bg);
-  border-color: var(--button-hover-border);
-  color: var(--button-ink);
-  box-shadow: var(--button-hover-shadow);
-}
-.repo-button:hover .button-arrow { opacity: .9; transform: translate(1px, -1px); }
-.repo-button:active, .publications ol.bibliography li .links a.btn:active { box-shadow: var(--button-shadow); }
+.repo-button .brand-icon { display: block; width: 12px; height: 12px; flex: 0 0 12px; }
 main { width: calc(100% - 310px); float: right; padding: 88px 0 60px; }
 article { margin-bottom: 30px; }
 article h2 { margin-bottom: 16px; }
@@ -141,32 +104,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid #cc9800; outline-offs
 }
 
 body {
-  --link-color: #005a9c;
-  --link-hover-color: #003f70;
-  --button-ink: #344256;
-  --button-bg: #f6f8fb;
-  --button-border: #d4dee9;
-  --button-hover-bg: #edf2f8;
-  --button-hover-border: #a9bbcf;
-  --button-shadow: 0 1px 2px rgb(15 23 42 / 4%), inset 0 1px 0 rgb(255 255 255 / 75%);
-  --button-hover-shadow: 0 4px 12px rgb(15 23 42 / 9%);
-  --linkedin-ink: #0a66c2;
-  --linkedin-bg: #eff6fe;
-  --linkedin-border: #cbdef2;
-  --linkedin-hover-bg: #e1eefc;
+  --link-color: #043361;
+  --link-hover-color: #002d72;
+  --resource-ink: var(--link-color);
+  --resource-border: #8796a5;
+  --resource-hover-ink: var(--link-hover-color);
 }
 body:not([data-theme="classic"]) {
   --link-color: var(--accent);
   --link-hover-color: var(--accent);
-  --button-ink: var(--ink);
-  --button-bg: var(--surface);
-  --button-border: var(--line);
-  --button-hover-bg: var(--page);
-  --button-hover-border: var(--accent);
-  --linkedin-ink: var(--accent);
-  --linkedin-bg: var(--surface);
-  --linkedin-border: var(--line);
-  --linkedin-hover-bg: var(--page);
+  --resource-border: var(--line);
 }
 a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):not(.biblink):not(.fakelink) {
   color: var(--link-color, #005a9c);
@@ -179,7 +126,6 @@ a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):no
   text-decoration-thickness: .12em;
 }
 @media (prefers-reduced-motion: reduce) {
-  .profile-links a.profile-link, .repo-button, .repo-button .button-arrow,
+  .profile-links a.profile-link, .repo-button,
   .publications ol.bibliography li .links a.btn { transition: none; }
-  .profile-links a.profile-link:hover, .repo-button:hover .button-arrow { transform: none; }
 }

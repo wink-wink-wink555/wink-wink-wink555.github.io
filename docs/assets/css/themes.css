@@ -154,11 +154,7 @@ body[data-theme="sketch"]{--page:#faf7ef;--ink:#3f4540;--accent:#396d85;--muted:
  body[data-theme="classic"] {
   --page:#20212b; --ink:#dadbdf; --accent:#3eb7f0; --muted:#a1b0bc; --line:#4b5361;
   --link-color:#3eb7f0; --link-hover-color:#8ddcff;
-  --button-ink:#dce5f0; --button-bg:#29313e; --button-border:#424e60;
-  --button-hover-bg:#323e4f; --button-hover-border:#6e8ca9;
-  --button-shadow:0 1px 2px rgb(0 0 0 / 12%), inset 0 1px 0 rgb(255 255 255 / 4%);
-  --button-hover-shadow:0 4px 12px rgb(0 0 0 / 18%);
-  --linkedin-ink:#90c5ff; --linkedin-bg:#23374e; --linkedin-border:#3b5b7b; --linkedin-hover-bg:#2b4561;
+  --resource-border:#63788b;
  }
 }
 @media(max-width:960px) {
