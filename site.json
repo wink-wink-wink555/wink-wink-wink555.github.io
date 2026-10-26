@@ -1,0 +1,161 @@
+{
+  "name": "Yifei Sun",
+  "position": "Undergraduate Student in Data Science",
+  "affiliation": "Shanghai University of Electric Power",
+  "email": "jeffreysun2005@163.com",
+  "language": "en",
+  "description": "Yifei Sun is an undergraduate in Data Science and Big Data Technology at Shanghai University of Electric Power, working across AI-assisted learning, assistive navigation, and data science.",
+  "about": [
+    "Yifei Sun studies Data Science and Big Data Technology at Shanghai University of Electric Power, with a GPA of 3.87/4.0 and a major rank of 1/48 in the junior year and cumulatively.",
+    "Work spans AI-assisted education, assistive navigation, AI document tools, statistical modeling, and streaming data systems. Yifei Sun is a second author on a paper published in ACCTCS 2025."
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/wink-wink-wink555"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/yifei-sun-jeffrey/"
+    }
+  ],
+  "education": [
+    {
+      "title": "B.Eng. Student in Data Science and Big Data Technology",
+      "organization": "Shanghai University of Electric Power",
+      "dates": "Sep 2023 – Jun 2027",
+      "details": [
+        "GPA: 3.87/4.0 (junior year)",
+        "Major rank: 1/48 (junior year and cumulative)",
+        "Relevant coursework: Data Structures, Algorithm Analysis and Design, Discrete Mathematics, Software Engineering, Database Principles, Operating Systems, Machine Learning, Artificial Intelligence, Combinatorial Optimization, Probability and Statistics."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Bronze Mirror Texture Restoration Based on Deep Convolutional Neural Network",
+      "authors": "C. Qian and Y. Sun",
+      "venue": "ACCTCS 2025 (IEEE), pp. 567–572",
+      "year": "2025",
+      "notes": "Second author.",
+      "links": [
+        {
+          "label": "Proceedings",
+          "url": "https://www.computer.org/csdl/proceedings-article/acctcs/2025/246300a567/29Qi1hSwkWA"
+        },
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1109/ACCTCS66275.2025.00104"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Development Intern, Early Engineering Team",
+      "organization": "Wuhu Qiheng Technology Co., Ltd.",
+      "dates": "Mar 2026 – Present",
+      "group": "Internship Experience",
+      "details": [
+        "Early-stage EdTech startup founded by a Shanghai Jiao Tong University professor and Ph.D. students.",
+        "Designed database schemas, permission rules, and task and version states for Codo (React 19, TypeScript, FastAPI), a K–12 AI teaching platform used in 10+ schools in Anhui, China.",
+        "Developed parts of the textbook ingestion pipeline, splitting parsed textbooks into chapter trees and section chunks and linking knowledge-graph concepts to supporting passages.",
+        "Built the teacher review flow for generated slides, including per-slide rewrites with version history, highlighting during narrated playback, and editable PPTX export; refined the experience using user feedback.",
+        "Compared chapter scoping, one-hop graph expansion, and embedding retrieval with LLM reranking to diagnose scripts that drifted from teacher-selected concepts.",
+        "Mentor: Prof. Junchi Yan, School of Artificial Intelligence, Shanghai Jiao Tong University."
+      ]
+    },
+    {
+      "title": "Software Development Assistant (AI)",
+      "organization": "Shanghai Siwei Software Co., Ltd.",
+      "dates": "May 2024 – Aug 2024",
+      "group": "Internship Experience",
+      "details": [
+        "Co-designed the relational database layer for an enterprise Text-to-SQL system, building business tables and query interfaces and documenting the business meaning of each table and field.",
+        "Implemented multi-step agent workflows to interpret user intent, generate schema-aware SQL, run queries against the business database, and format results.",
+        "Connected backend query services to the frontend result view and used end-to-end tests to catch queries that ran successfully but mapped business terms to the wrong fields."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "ARIADNE Assistive Navigation",
+      "organization": "Team Lead, 5-Person Team",
+      "dates": "Sep 2024 – Oct 2026",
+      "url": "https://github.com/wink-wink-wink555/blind_navigation",
+      "details": [
+        "Led a five-person team building an assistive navigation prototype for people with visual impairments, integrating tactile-paving detection, map routes, voice guidance, and family messaging.",
+        "Organized annotation of 1,000+ tactile-paving images and expanded the dataset to 6,000+ through augmentation; trained YOLOv8 for local alignment and used Baidu routes for turn guidance.",
+        "Implemented a shared speech scheduler with priorities, expiry times, and route/state checks, so urgent alerts can interrupt ongoing messages and obsolete turn cues are discarded after rerouting.",
+        "Built a RouterAgent to direct natural-language requests to a ReAct map agent backed by Baidu Map MCP or to handlers for settings, family messaging, and companion chat."
+      ]
+    },
+    {
+      "title": "MarkiNote and FinNote",
+      "organization": "Independent Developer and Integration Lead",
+      "dates": "Nov 2025 – Present",
+      "url": "https://github.com/wink-wink-wink555/MarkiNote",
+      "details": [
+        "Built and open-sourced MarkiNote, a self-hosted AI document workspace (React 19, TypeScript, FastAPI) whose agent uses 11 tools to search, create, edit, and organize documents and research the web; the project earned 100+ GitHub stars.",
+        "Connected 19 FinanceMCP financial tools over HTTP and MCP to form FinNote, bringing multi-market data and AI analysis into editable Markdown notes.",
+        "Added safeguards for agent edits: writes are off by default, each write needs one-time approval tied to its arguments, and changes are journaled with before-images for rollback.",
+        "Handled concurrent edits with content versions and ETag conflict checks; the CV reports 500+ pytest and Vitest tests."
+      ]
+    },
+    {
+      "title": "NIPT Testing-Window Optimization and Chromosome-Abnormality Classification",
+      "organization": "Team Lead, 3-Person Team",
+      "dates": "Sep 2025",
+      "details": [
+        "Modeled gestational-age and BMI effects in 1,082 NIPT measurements from 267 participants using B-spline and mixed-effects regression; optimized BMI-stratified testing windows and assessed sensitivity through Monte Carlo simulation.",
+        "Compared Random Forest with logistic regression using participant-level splits to prevent leakage across repeated measurements; Random Forest achieved ROC-AUC 0.885 and abnormal-class F1 0.791."
+      ]
+    },
+    {
+      "title": "Bronze Mirror Texture Restoration",
+      "organization": "Research Contributor and Second Author",
+      "dates": "Jul 2024 – Dec 2024",
+      "url": "https://www.computer.org/csdl/proceedings-article/acctcs/2025/246300a567/29Qi1hSwkWA",
+      "details": [
+        "Collected and prepared 4,000+ bronze-mirror images and split source images before augmentation, expanding the dataset to 10,000+ images while keeping derivatives of each source in the same partition.",
+        "Trained and evaluated an attention-enhanced DC-GAN restoration model against baselines, achieving PSNR 20.05 and SSIM 0.906."
+      ]
+    },
+    {
+      "title": "Battery Cycle-Life Prediction and Streaming Analytics",
+      "dates": "Oct 2025 – May 2026",
+      "details": [
+        "Built a battery cycle-life prediction pipeline using approximately 100K cycle-level records from 124 cells; compared ElasticNet, Random Forest, and XGBoost using cell-level train/test splits, with XGBoost reaching R² 0.89 on held-out cells.",
+        "Turned the batch workflow into a streaming prototype by replaying 12M+ battery telemetry events through Kafka and Spark Structured Streaming into HDFS, with checkpointing and deduplication.",
+        "Processed out-of-order sensor data in Flink with event-time watermarks and tumbling windows, and ran the offline model in PyFlink using exported preprocessing and model parameters."
+      ]
+    }
+  ],
+  "awards": [
+    "Top 10, Intel Platform Enterprise AI Solutions Innovation Practice Competition (ARIADNE).",
+    "National Third Prize, Chinese Collegiate Computing Competition (ARIADNE and FinNote; two awards).",
+    "Provincial First Prize (ARIADNE) and Second Prize (FinNote), Shanghai Computer Application Competition for College Students.",
+    "Outstanding Rating, National Undergraduate Innovation and Entrepreneurship Training Program (ARIADNE).",
+    "Provincial Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling (NIPT).",
+    "University First-Class Scholarship (2026).",
+    "University Second-Class Scholarship and Innovation and Entrepreneurship Special Scholarship (2025)."
+  ],
+  "skills": [
+    "Programming Languages: Advanced — Python, SQL, Java; Intermediate — C, TypeScript/JavaScript.",
+    "AI/ML and Statistical Modeling: NumPy, pandas, PyTorch, scikit-learn, Spark ML, YOLOv8; regression, mixed-effects modeling, clustering, classification, Monte Carlo simulation.",
+    "Agentic AI and Retrieval: RAG, ReAct, MCP, LangChain/LangGraph, ChromaDB, tool-calling agents.",
+    "Data and Software Systems: Kafka, Spark Structured Streaming, Flink, Hadoop/HDFS, FastAPI, React, SQLAlchemy, PostgreSQL/MySQL, Docker, Git, Linux."
+  ],
+  "section_order": [
+    "about",
+    "education",
+    "projects",
+    "publications",
+    "experience",
+    "awards",
+    "skills"
+  ],
+  "theme": "classic",
+  "background": "particles",
+  "site_url": "https://wink-wink-wink555.github.io/"
+}
