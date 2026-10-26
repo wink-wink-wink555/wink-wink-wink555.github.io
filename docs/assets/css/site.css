@@ -33,7 +33,29 @@ header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-b
   transform: translateY(-1px);
 }
 .profile-links .brand-icon { display: block; width: 16px; height: 16px; flex: 0 0 16px; }
-.project-link .brand-icon { display: inline-block; width: .9em; height: .9em; margin-left: .32em; vertical-align: -.12em; }
+.repo-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  margin-left: .6em;
+  padding: 6px 10px;
+  border: 1px solid var(--profile-link-border, #8796a5);
+  border-radius: 999px;
+  background: var(--page, #fff);
+  color: var(--link-color, #005a9c);
+  font: 600 12px/1 Arial, sans-serif;
+  text-decoration: none;
+  vertical-align: .1em;
+  white-space: nowrap;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.repo-button .brand-icon { display: block; width: 14px; height: 14px; flex: 0 0 14px; }
+.repo-button:hover {
+  background: var(--profile-link-hover, #eef4fa);
+  border-color: var(--link-color, #005a9c);
+  color: var(--link-hover-color, #003f70);
+}
 main { width: calc(100% - 310px); float: right; padding: 88px 0 60px; }
 article { margin-bottom: 30px; }
 article h2 { margin-bottom: 16px; }
@@ -99,17 +121,17 @@ body:not([data-theme="classic"]) {
   --profile-link-hover: var(--surface);
   --profile-link-border: var(--line);
 }
-a:not(.normal):not(.profile-link):not(.btn):not(.skip-link):not(.biblink):not(.fakelink) {
+a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):not(.biblink):not(.fakelink) {
   color: var(--link-color, #005a9c);
   text-decoration: underline;
   text-decoration-thickness: .07em;
   text-underline-offset: .15em;
 }
-a:not(.normal):not(.profile-link):not(.btn):not(.skip-link):not(.biblink):not(.fakelink):hover {
+a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):not(.biblink):not(.fakelink):hover {
   color: var(--link-hover-color, #003f70);
   text-decoration-thickness: .12em;
 }
 @media (prefers-reduced-motion: reduce) {
-  .profile-links a.profile-link { transition: none; }
+  .profile-links a.profile-link, .repo-button { transition: none; }
   .profile-links a.profile-link:hover { transform: none; }
 }

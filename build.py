@@ -165,10 +165,12 @@ def profile_link(label, url):
         network, esc(url), icon, esc(label))
 
 
-def project_title_link(title, url):
-    icon = GITHUB_ICON if is_github_url(url) else ''
-    return '<a class="project-link" href="{}"><span>{}</span>{}</a>'.format(
-        esc(url), esc(title), icon)
+def project_title_markup(title, url):
+    if is_github_url(url):
+        label = esc('Open {} GitHub repository'.format(title))
+        return '{} <a class="repo-button" href="{}" aria-label="{}">{}<span>GitHub</span></a>'.format(
+            esc(title), esc(url), label, GITHUB_ICON)
+    return '<a class="project-link" href="{}">{}</a>'.format(esc(url), esc(title))
 
 
 def render_detail(text, detail_links):
@@ -244,7 +246,7 @@ def render(data, template):
                 if group and group != previous_group:
                     content += '<h3>{}</h3>'.format(esc(group))
                 previous_group = group
-                title = project_title_link(item['title'], item['url']) if item.get('url') else esc(item['title'])
+                title = project_title_markup(item['title'], item['url']) if item.get('url') else esc(item['title'])
                 content += '<div class="entry"><p><strong>{}</strong>'.format(title)
                 if item.get('organization'):
                     content += '<br><em>{}</em>'.format(esc(item['organization']))
