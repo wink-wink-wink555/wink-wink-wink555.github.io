@@ -25,7 +25,7 @@ THEMES = {item['id']: item for item in CATALOG['themes']}
 BACKGROUNDS = {'none'} | {item['id'] for item in CATALOG['effects']}
 LISTS = {'about', 'links', 'additional_emails', 'publications', 'projects', 'experience', 'education',
          'awards', 'skills', 'service', 'section_order'}
-ENTRY_KEYS = {'title', 'organization', 'dates', 'details', 'detail_links', 'url', 'group'}
+ENTRY_KEYS = {'title', 'organization', 'dates', 'details', 'detail_links', 'url', 'links', 'group'}
 PUB_KEYS = {'title', 'authors', 'venue', 'year', 'badge', 'notes', 'image', 'links'}
 ORDER = ['about', 'publications', 'projects', 'experience', 'education', 'awards', 'skills', 'service']
 EMAIL_PATTERN = re.compile(r'[^\s@<>?&#]+@[^\s@<>?&#]+\.[^\s@<>?&#]+')
@@ -167,10 +167,13 @@ def profile_link(label, url):
 
 
 def project_title_markup(title, url):
+    colored_title = '<span class="project-title">{}</span>'.format(esc(title))
+    if not url:
+        return colored_title
     if is_github_url(url):
         label = esc('Open {} GitHub repository'.format(title))
         return '{} <a class="repo-button" href="{}" aria-label="{}">{}<span>GitHub</span></a>'.format(
-            esc(title), esc(url), label, GITHUB_ICON)
+            colored_title, esc(url), label, GITHUB_ICON)
     return '<a class="project-link" href="{}">{}</a>'.format(esc(url), esc(title))
 
 
@@ -247,7 +250,15 @@ def render(data, template, style_version=''):
                 if group and group != previous_group:
                     content += '<h3>{}</h3>'.format(esc(group))
                 previous_group = group
-                title = project_title_markup(item['title'], item['url']) if item.get('url') else esc(item['title'])
+                if key == 'projects':
+                    title = project_title_markup(item['title'], item.get('url', ''))
+                    if item.get('links'):
+                        title += ' <span class="project-links">' + ' '.join(
+                            link(x['label'], x['url'], 'btn')
+                            for x in item['links']
+                        ) + '</span>'
+                else:
+                    title = project_title_markup(item['title'], item['url']) if item.get('url') else esc(item['title'])
                 content += '<div class="entry"><p><strong>{}</strong>'.format(title)
                 if item.get('organization'):
                     content += '<br><em>{}</em>'.format(esc(item['organization']))

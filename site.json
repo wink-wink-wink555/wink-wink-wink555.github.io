@@ -82,7 +82,7 @@
       "url": "https://github.com/wink-wink-wink555/blind_navigation",
       "details": [
         "Led a five-person team building an assistive navigation prototype for people with visual impairments, integrating tactile-paving detection, map routes, voice guidance, and family messaging.",
-        "Organized annotation of 1,000+ tactile-paving images and expanded the dataset to 6,000+ through augmentation; trained YOLOv8 for local alignment and used Baidu routes for turn guidance.",
+        "Coordinated annotation of 1,000+ tactile-paving images and expanded the dataset to 6,000+ through augmentation. Trained YOLOv8 to detect tactile paving and provide path-alignment feedback, while using Baidu Maps for turn guidance.",
         "Implemented a shared speech scheduler with priorities, expiry times, and route/state checks, so urgent alerts can interrupt ongoing messages and obsolete turn cues are discarded after rerouting.",
         "Built a RouterAgent to direct natural-language requests to a ReAct map agent backed by Baidu Map MCP or to handlers for settings, family messaging, and companion chat."
       ]
@@ -93,10 +93,10 @@
       "dates": "Nov 2025 – Present",
       "url": "https://github.com/wink-wink-wink555/MarkiNote",
       "details": [
-        "Built and open-sourced MarkiNote, a self-hosted AI document workspace (React 19, TypeScript, FastAPI) whose agent uses 11 tools to search, create, edit, and organize documents and research the web; the project earned 100+ GitHub stars.",
+        "Built and open-sourced MarkiNote, a self-hosted AI document workspace using React 19, TypeScript, and FastAPI. Its agent provides 11 tools for document management and web research, and the repository has received 100+ GitHub stars.",
         "Connected 19 FinanceMCP financial tools over HTTP and MCP to form FinNote, bringing multi-market data and AI analysis into editable Markdown notes.",
         "Added safeguards for agent edits: writes are off by default, each write needs one-time approval tied to its arguments, and changes are journaled with before-images for rollback.",
-        "Handled concurrent edits with content versions and ETag conflict checks; the CV reports 500+ pytest and Vitest tests."
+        "Implemented content-versioning and ETag-based conflict checks for concurrent edits; the project includes 500+ automated tests using pytest and Vitest."
       ],
       "detail_links": [
         {
@@ -118,7 +118,16 @@
       "title": "Bronze Mirror Texture Restoration",
       "organization": "Research Contributor and Second Author",
       "dates": "Jul 2024 – Dec 2024",
-      "url": "https://www.computer.org/csdl/proceedings-article/acctcs/2025/246300a567/29Qi1hSwkWA",
+      "links": [
+        {
+          "label": "Proceedings",
+          "url": "https://www.computer.org/csdl/proceedings-article/acctcs/2025/246300a567/29Qi1hSwkWA"
+        },
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1109/ACCTCS66275.2025.00104"
+        }
+      ],
       "details": [
         "Collected and prepared 4,000+ bronze-mirror images and split source images before augmentation, expanding the dataset to 10,000+ images while keeping derivatives of each source in the same partition.",
         "Trained and evaluated an attention-enhanced DC-GAN restoration model against baselines, achieving PSNR 20.05 and SSIM 0.906."
@@ -128,7 +137,7 @@
       "title": "Battery Cycle-Life Prediction and Streaming Analytics",
       "dates": "Oct 2025 – May 2026",
       "details": [
-        "Built a battery cycle-life prediction pipeline using approximately 100K cycle-level records from 124 cells; compared ElasticNet, Random Forest, and XGBoost using cell-level train/test splits, with XGBoost reaching R² 0.89 on held-out cells.",
+        "Built a battery cycle-life prediction pipeline using approximately 100,000 cycle-level records from 124 cells. Compared ElasticNet, Random Forest, and XGBoost using cell-level train/test splits; XGBoost achieved an R² of 0.89 on held-out cells.",
         "Turned the batch workflow into a streaming prototype by replaying 12M+ battery telemetry events through Kafka and Spark Structured Streaming into HDFS, with checkpointing and deduplication.",
         "Processed out-of-order sensor data in Flink with event-time watermarks and tumbling windows, and ran the offline model in PyFlink using exported preprocessing and model parameters."
       ]

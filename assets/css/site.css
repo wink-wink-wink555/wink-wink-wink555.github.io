@@ -11,7 +11,9 @@ header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-b
 .image.avatar img { width: 145px; height: 145px; padding: 16px; object-fit: cover; }
 .profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
 .profile-links a { color: var(--link-color, #043361); }
-.profile-links a.profile-link, .repo-button, .publications ol.bibliography li .links a.btn {
+.profile-links a.profile-link, .repo-button,
+.publications ol.bibliography li .links a.btn,
+.project-links a.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +33,9 @@ header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-b
   white-space: nowrap;
   transition: color .15s ease, border-color .15s ease;
 }
-.profile-links a.profile-link:hover, .repo-button:hover, .publications ol.bibliography li .links a.btn:hover {
+.profile-links a.profile-link:hover, .repo-button:hover,
+.publications ol.bibliography li .links a.btn:hover,
+.project-links a.btn:hover {
   border-color: var(--resource-hover-ink);
   color: var(--resource-hover-ink);
 }
@@ -45,6 +49,15 @@ header .email { font-family: "Ubuntu Mono", monospace; font-size: 14px; margin-b
 .profile-links .brand-icon { display: block; width: 14px; height: 14px; flex: 0 0 14px; }
 .repo-button { margin-left: .55em; vertical-align: middle; }
 .repo-button .brand-icon { display: block; width: 12px; height: 12px; flex: 0 0 12px; }
+.section-projects .project-title { color: var(--link-color, #043361); }
+.project-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-left: .55em;
+  vertical-align: middle;
+}
 main { width: calc(100% - 310px); float: right; padding: 88px 0 60px; }
 article { margin-bottom: 30px; }
 article h2 { margin-bottom: 16px; }
@@ -127,5 +140,6 @@ a:not(.normal):not(.profile-link):not(.repo-button):not(.btn):not(.skip-link):no
 }
 @media (prefers-reduced-motion: reduce) {
   .profile-links a.profile-link, .repo-button,
-  .publications ol.bibliography li .links a.btn { transition: none; }
+  .publications ol.bibliography li .links a.btn,
+  .project-links a.btn { transition: none; }
 }
